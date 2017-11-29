@@ -30,5 +30,5 @@ container_bundle(
 
 container_push(
   name = "push",
-  bundle = ":all",
+  image = ":all",
 )
