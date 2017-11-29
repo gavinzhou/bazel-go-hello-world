@@ -1,5 +1,11 @@
 # bazel hello world 
 
+## build binary
+
+```bash
+bazel build :hello
+```
+
 ## build go container image with bazel
 
 ```bash
