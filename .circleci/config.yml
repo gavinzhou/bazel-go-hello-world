@@ -36,36 +36,36 @@ jobs:
           key: v1-{{ .Branch }}
           paths:
             - ~/.cache
-  # deploy:
-  #   <<: *container_config
-  #   steps:
-  #     - checkout
-  #     - setup_remote_docker:
-  #         version: 17.07.0-ce
-  #     - restore_cache:
-  #         keys:
-  #           - v1-{{ .Branch }}
-  #         paths:
-  #           - ~/.cache
-  #     - run:
-  #         name: Install docker client
-  #         command: |
-  #           set -x
-  #           VER="17.07.0-ce"
-  #           curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/edge/x86_64/docker-${VER}.tgz
-  #           tar -xz -C /tmp/ -f /tmp/docker-$VER.tgz
-  #           mv /tmp/docker/* /usr/bin
-  #     - run:
-  #         name: Push docker hub
-  #         command: |
-  #           docker login -u $DOCKER_USER -p $DOCKER_PASS
-  #           bazel run push
-  #           # curl -X POST https://hooks.microbadger.com/images/orangesys/alpine-orangeapi/_24B4d4BBsQhsH6Av_nH1ZKsl2s=
+  deploy:
+    <<: *container_config
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 17.07.0-ce
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - ~/.cache
+      - run:
+          name: Install docker client
+          command: |
+            set -x
+            VER="17.07.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/edge/x86_64/docker-${VER}.tgz
+            tar -xz -C /tmp/ -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+      - run:
+          name: Push docker hub
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            bazel run push
+            # curl -X POST https://hooks.microbadger.com/images/orangesys/alpine-orangeapi/_24B4d4BBsQhsH6Av_nH1ZKsl2s=
 workflows:
   version: 2
-  build-and-deploy:
+  build_and_deploy:
     jobs:
       - build:
-      # - deploy:
-      #     requires:
-      #       - build
+      - deploy:
+          requires:
+            - build
