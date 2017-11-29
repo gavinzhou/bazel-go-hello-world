@@ -36,7 +36,6 @@ jobs:
           key: v1-{{ .Branch }}
           paths:
             - ~/.cache
-
   deploy:
     <<: *container_config
     steps:
@@ -47,7 +46,7 @@ jobs:
           keys:
             - v1-{{ .Branch }}
           paths:
-            - /caches/alpine-orangeapi.tar
+            - ~/.cache
       - run:
           name: Install docker client
           command: |
