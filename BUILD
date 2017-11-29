@@ -19,16 +19,12 @@ go_image(
     importpath = ".",
 )
 
-container_bundle(
-    name = "all",
-    images = {
-        "index.docker.io/orangesys/bazel-go-hello-world:latest": ":go_image",
-        "index.docker.io/orangesys/bazel-go-hello-world:{VERSION}": ":go_image",
-    },
-    stamp = True,
-)
-
 container_push(
   name = "push",
-  image = ":all",
+  format = "Docker",
+  image = ":go_image",
+  registry = "index.docker.io",
+  repository = "orangesys/bazel-go-hello-world",
+  stamp = True,
+  tag = {VERSION},
 )
