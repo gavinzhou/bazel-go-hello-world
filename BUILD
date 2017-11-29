@@ -26,5 +26,22 @@ container_push(
   registry = "index.docker.io",
   repository = "orangesys/bazel-go-hello-world",
   stamp = True,
-  tag = "{VERSION}",
+)
+
+container_bundle(
+    name = "bundle_to_push",
+    images = {
+        "index.docker.io/orangesys/bazel-go-hello-world:{VERSION}": ":go_image",
+         "index.docker.io/orangesys/bazel-go-hello-world:latest": ":go_image",
+    },
+    stamp = True,
+)
+load(
+    "@io_bazel_rules_docker//contrib:push-all.bzl",
+    docker_pushall = "docker_push",
+)
+
+docker_pushall(
+    name = "push_bundle",
+    bundle = ":bundle_to_push",
 )

@@ -59,7 +59,7 @@ jobs:
           name: Push docker hub
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            bazel run push
+            bazel run :push_bundle
             # curl -X POST https://hooks.microbadger.com/images/orangesys/alpine-orangeapi/_24B4d4BBsQhsH6Av_nH1ZKsl2s=
 workflows:
   version: 2
