@@ -27,11 +27,11 @@ jobs:
       - run:
           name: Build binary
           command: |
-            bazel build :go_image
+            bazel build :hello
       - run:
           name: Build container image with go_image base
           command: |
-            bazel build :image
+            bazel build :go_image
       - save_cache:
           key: v1-{{ .Branch }}
           paths:
