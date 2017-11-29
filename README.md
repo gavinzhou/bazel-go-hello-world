@@ -1,4 +1,4 @@
-# bazel hello world 
+# bazel hello world
 
 ## build binary
 
