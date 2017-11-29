@@ -34,9 +34,3 @@ container_image(
     files = [":hello"],
     cmd = ["/hello"],
 )
-
-container_image(
-    name = "app",
-    base = "@ubuntu_base//image",
-    cmd = ["ls"]
-)
