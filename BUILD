@@ -26,5 +26,5 @@ container_push(
   registry = "index.docker.io",
   repository = "orangesys/bazel-go-hello-world",
   stamp = True,
-  tag = {VERSION},
+  tag = "{VERSION}",
 )
