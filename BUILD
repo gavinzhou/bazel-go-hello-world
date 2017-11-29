@@ -24,7 +24,7 @@ container_push(
   format = "Docker",
   image = ":go_image",
   registry = "index.docker.io",
-  repository = "orangesys/go-image",
+  repository = "orangesys/bazel-go-hello-world",
   stamp = True,
 )
 
